@@ -1,0 +1,20 @@
+{
+  "name": "OpenVADL ISS Dev Setup",
+  "build": {
+    "dockerfile": "../Dockerfile",
+    "context": "..",
+    "args": {
+      "OPEN_VADL_GIT_REPO": "git@ea.complang.tuwien.ac.at:vadl/open-vadl.git"
+    }
+  },
+  "workspaceFolder": "/code/open-vadl",
+  "mounts": [
+    "source=${localWorkspaceFolder}/tools,target=/tools,type=bind,consistency=cached",
+    "source=${localWorkspaceFolder}/code,target=/code,type=bind,consistency=cached",
+    "source=${localWorkspaceFolder}/iss,target=/gen/output/iss,type=bind,consistency=cached",
+    "source=${localWorkspaceFolder}/testsuite,target=/testsuite,type=bind,consistency=cached",
+    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+  ],
+  "runArgs": ["--name=open-vadl-iss-dev"],
+  "customizations": {}
+}
