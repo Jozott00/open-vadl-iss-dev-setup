@@ -1,0 +1,9 @@
+#!/bin/bash
+
+vadl_path=$VADL_DIR
+
+cd "$vadl_path"
+
+time ./.gradlew fatJar -PnoXtendCompile
+
+make deploy

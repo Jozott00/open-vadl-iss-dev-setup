@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -e
+
+cd "$GEN_DIR"
+
+rv64i_spec="$OPEN_VADL_DIR/vadl-test/main/resources/testSource/sys/risc-v/rv64i.vadl"
+
+time vadl --viam-iss $rv64i_spec
+
+iss_path="$ISS_DIR/build"
+
+cd $iss_path
+
+make -j$(nproc)

@@ -7,7 +7,7 @@
       "OPEN_VADL_GIT_REPO": "git@ea.complang.tuwien.ac.at:vadl/open-vadl.git"
     }
   },
-  "workspaceFolder": "/code/open-vadl",
+  "workspaceFolder": "/testsuite",
   "mounts": [
     "source=${localWorkspaceFolder}/tools,target=/tools,type=bind,consistency=cached",
     "source=${localWorkspaceFolder}/code,target=/code,type=bind,consistency=cached",

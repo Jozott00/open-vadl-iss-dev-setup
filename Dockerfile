@@ -3,7 +3,8 @@ FROM jozott/qemu:latest
 RUN apt update \
     && apt install -y \
     openjdk-17-jdk \
-    openjdk-17-jre
+    openjdk-17-jre \
+    ccache
 
 RUN pip install pyyaml qemu.qmp
 
@@ -14,10 +15,13 @@ ENV OPEN_VADL_GIT_REPO=${OPEN_VADL_GIT_REPO}
 ENV PATH="/tools:${PATH}"
 
 ENV ISS_DIR=/gen/output/iss
-ENV VADL_DIR=/code
-ENV OPEN_VADL_DIR=/code/open-vadl
+ENV VADL_DIR=/code/vadl
+ENV OPEN_VADL_DIR=/code/vadl/open-vadl
 ENV TOOLS_DIR=/tools
-ENV TESTUITE_DIR=/testsuite
+ENV TESTSUITE_DIR=/testsuite
+ENV GEN_DIR=/gen
 
 # Add vadl executable to path
 ENV PATH="${VADL_DIR}/obj/bin:${PATH}"
+
+ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
