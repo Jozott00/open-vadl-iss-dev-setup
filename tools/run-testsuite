@@ -1,11 +1,14 @@
 #!/bin/bash
+# Run the ISS testsuite using the test-suite.yaml test specification.
 
 set -e
 
 test_scripts_path="$OPEN_VADL_DIR/vadl-test/main/resources/scripts/iss_qemu"
-
 test_runner="$test_scripts_path/bare_metal_runner.py"
 
 cd "$TESTSUITE_DIR"
 
-python3 "$test_runner" "$ISS_DIR/build/qemu-system-vadl"
+# Use positional argument if provided, otherwise default to "$ISS_DIR/build/qemu-system-vadl"
+target="${1:-$ISS_DIR/build/qemu-system-vadl}"
+
+python3 "$test_runner" "$target"

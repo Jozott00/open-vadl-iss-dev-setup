@@ -4,7 +4,11 @@
 code/*
 iss/*
 testsuite/*
+dump/*
 
 !code/.keep
 !iss/.keep
 !testsuite/.keep
+
+
+.DS_Store

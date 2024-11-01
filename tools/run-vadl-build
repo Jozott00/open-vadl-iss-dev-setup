@@ -1,4 +1,7 @@
 #!/bin/bash
+# Builds the VADL project to a new vadl binary.
+
+set -e
 
 vadl_path=$VADL_DIR
 

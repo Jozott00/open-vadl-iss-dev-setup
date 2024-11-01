@@ -4,6 +4,7 @@ RUN apt update \
     && apt install -y \
     openjdk-17-jdk \
     openjdk-17-jre \
+    language-pack-en-base \
     ccache
 
 RUN pip install pyyaml qemu.qmp

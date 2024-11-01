@@ -1,7 +1,0 @@
-#!/bin/bash
-
-QEMU_VERSION="9.0.3"
-
-cd $ISS_DIR
-
-curl -L $QEMU_RELEASE | tar -xvz --strip-components=1
