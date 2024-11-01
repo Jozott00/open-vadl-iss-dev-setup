@@ -3,8 +3,17 @@
 
 set -e
 
-iss_path="$ISS_DIR/build"
+iss_build_path="$ISS_DIR/build"
 
-cd $iss_path
+# Get QEMU target name from environment of default to "vadl-softmmu"
+target=${QEMU_TARGET:-"vadl-softmmu"}
+# If file $ISS_DIR/build does not exist, we have to configure QEMU first
+if [ ! -f "$iss_build_path" ]; then
+    mkdir -p $iss_build_path
+    cd $iss_build_path
+    ../configure --cc='ccache gcc' --target-list=$target
+fi
 
-make -j10
+cd $iss_build_path
+
+make -j$(nproc)

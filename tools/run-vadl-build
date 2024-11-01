@@ -7,6 +7,12 @@ vadl_path=$VADL_DIR
 
 cd "$vadl_path"
 
-time ./.gradlew fatJar -PnoXtendCompile
+# Check if obj/bin/vadl exists... if not we have to fully build it
+if [ ! -f "obj/bin/vadl" ]; then
+    make build
+else 
+    time ./.gradlew fatJar -PnoXtendCompile
+    make deploy
+fi
 
-make deploy
+

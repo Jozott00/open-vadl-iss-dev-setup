@@ -3,8 +3,12 @@
 
 set -e
 
+echo "Generating ISS for RV64I specification..."
+
 cd "$GEN_DIR"
 
 rv64i_spec="$OPEN_VADL_DIR/vadl-test/main/resources/testSource/sys/risc-v/rv64i.vadl"
 
 time vadl --viam-iss $rv64i_spec
+
+echo "Done."

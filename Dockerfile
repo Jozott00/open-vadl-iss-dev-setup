@@ -21,6 +21,7 @@ ENV OPEN_VADL_DIR=/code/vadl/open-vadl
 ENV TOOLS_DIR=/tools
 ENV TESTSUITE_DIR=/testsuite
 ENV GEN_DIR=/gen
+ENV VADL_REPO=git@ea.complang.tuwien.ac.at:vadl/vadl.git
 
 # Add vadl executable to path
 ENV PATH="${VADL_DIR}/obj/bin:${PATH}"
