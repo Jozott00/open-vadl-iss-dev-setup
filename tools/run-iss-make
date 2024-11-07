@@ -11,7 +11,7 @@ target=${QEMU_TARGET:-"vadl-softmmu"}
 if [ ! -f "$iss_build_path" ]; then
     mkdir -p $iss_build_path
     cd $iss_build_path
-    ../configure --cc='ccache gcc' --target-list=$target
+    ../configure --cc='ccache gcc' --target-list=$target,riscv64-softmmu --enable-debug --enable-debug-tcg
 fi
 
 cd $iss_build_path
