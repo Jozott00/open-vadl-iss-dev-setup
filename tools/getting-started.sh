@@ -4,7 +4,7 @@
 
 # Check if the script is being run from a devcontainer
 # by checking if the Dockerfile exists (in workspace) and $ISS_DIR is set and $REMOTE_CONTAINERS is true
-if [ -f "/workspaces/open-vadl-iss-dev-setup/Dockerfile" ] && [ -n "$ISS_DIR" ] && [ "$REMOTE_CONTAINERS" = "true" ]; then
+if [ -n "$ISS_DIR" ] && [ "$REMOTE_CONTAINERS" = "true" ]; then
   echo "Downloading QEMU ($QEMU_RELEASE) to $ISS_DIR..."
 else
   echo "This script is intended to be run in the devcontainer."
@@ -12,7 +12,7 @@ else
 fi
 
 # Remove current QEMU version
-rm -rf $ISS_DIR/*
+# rm -rf $ISS_DIR/*
 
 mkdir -p $ISS_DIR
 cd $ISS_DIR

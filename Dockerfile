@@ -13,7 +13,7 @@ ARG OPEN_VADL_GIT_REPO=git@ea.complang.tuwien.ac.at:vadl/open-vadl.git
 ENV OPEN_VADL_GIT_REPO=${OPEN_VADL_GIT_REPO}
 
 # Add tools to path
-ENV PATH="/tools:${PATH}"
+ENV PATH="/tools:/${PATH}"
 
 ENV ISS_DIR=/gen/output/iss
 ENV VADL_DIR=/code/vadl
@@ -24,6 +24,6 @@ ENV GEN_DIR=/gen
 ENV VADL_REPO=git@ea.complang.tuwien.ac.at:vadl/vadl.git
 
 # Add vadl executable to path
-ENV PATH="${VADL_DIR}/obj/bin:${PATH}"
+ENV PATH="${ISS_DIR}/build:${VADL_DIR}/obj/bin:${PATH}"
 
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
