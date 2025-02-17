@@ -7,8 +7,8 @@ the container, as it provides all relevant dependencies.
 
 ## Directory Structure
 
-- `code` contains the `vadl` and `vadl/open-vadl` projects 
-- `iss` mounts the generated qemu iss (`/gen/output/iss` within the container)
+- `code` contains the `open-vadl` project
+- `iss` mounts the generated qemu iss (`/work/iss` within the container)
 - `testsuite` contains the `test-suite.yaml` file that specifies ISS tests (for manual debugging)
 - `dump` contains the VADL dump files during ISS generation
 - `tools` contains all helper scripts to execute different steps during development
@@ -19,18 +19,18 @@ the container, as it provides all relevant dependencies.
 - Open it in VSCode (the Devcontainer extension must be installed)
 - Execute the VSCode command `Dev Containers: Reopen in Containers...`
     This will build and start the devcontainer and reopens VSCode within it.
-    The work direcotyr will be `/testsuite`. If you want to work in some other directory, you can also open
+    The work direcotyr will be `/work`. If you want to work in some other directory, you can also open
     it within the container with `code /path/to/directory`.
 - The initially started container won't have the VADL repository and QEMU ISS set up. To do this run
     ```bash
-    bash /tools/getting-started.sh
+    bash scripts/getting-started.sh
     ```
-    This will download the correct QEMU version and clones the VADL repository to `/code/vadl`. 
+    This will download the correct QEMU version and clones the OpenVADL repository to `/code/open-vadl`. 
     Note that your host must have access to the VADL repository via SSH (private key).
 
 - Now you can run 
     ```bash
-    run-vadl-build && run-iss-gen-rv64i && run-iss-make
+    run-vadl-build && run-iss-gen-rv64im && run-iss-make rv64im
     ```
     which will build vadl, generates the RV64I ISS and builds the ISS.
 
@@ -41,7 +41,7 @@ the container, as it provides all relevant dependencies.
 
 My basic workflow is
 - Start VSCode within the container (so that the container is up and running)
-- Open `./code/vadl/open-vadl` in IntelliJ (relative to this repo on the host)
+- Open `./code/open-vadl` in IntelliJ (relative to this repo on the host)
 - Open `./iss` in CLion
 - Run all commands such as `run-iss-make`, `run-testsuite`, etc. within the container
 
@@ -64,7 +64,7 @@ tests:
   ```
 
 Then call `run-testsuite`. This will compile the assembly (with some wrapper) to an elf that is loaded
-to the `qemu-system-vadl` iss and executes it. After execution is finished, the relevant register states are collected
+to the `qemu-system-<arch>` iss and executes it. After execution is finished, the relevant register states are collected
 and the `qemu-system-riscv64` is executed as reference. At the end the results of both runs are compared to check
 if the generated VADL ISS functions correctly.
 

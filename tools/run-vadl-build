@@ -3,16 +3,9 @@
 
 set -e
 
-vadl_path=$VADL_DIR
-
+vadl_path=$OPEN_VADL_DIR
 cd "$vadl_path"
 
-# Check if obj/bin/vadl exists... if not we have to fully build it
-if [ ! -f "obj/bin/vadl" ]; then
-    make build
-else 
-    time ./.gradlew fatJar -PnoXtendCompile
-    make deploy
-fi
+time ./gradlew installDist
 
 

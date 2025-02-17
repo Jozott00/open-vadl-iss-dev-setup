@@ -12,7 +12,7 @@ else
 fi
 
 # Remove current QEMU version
-# rm -rf $ISS_DIR/*
+rm -rf $ISS_DIR/*
 
 mkdir -p $ISS_DIR
 cd $ISS_DIR
@@ -20,12 +20,7 @@ curl -L $QEMU_RELEASE | tar -xz --strip-components=1
 echo "done."
 
 # Clone VADL
-echo "Cloning VADL to $VADL_DIR..."
-mkdir -p $VADL_DIR
-cd $VADL_DIR
-git clone $VADL_REPO .
-git submodule init
-git submodule update
-
+echo "Cloning OpenVADL to $OPEN_VADL_DIR..."
+mkdir -p $OPEN_VADL_DIR
 cd $OPEN_VADL_DIR
-git checkout origin/master
+git clone $OPEN_VADL_GIT_REPO .
