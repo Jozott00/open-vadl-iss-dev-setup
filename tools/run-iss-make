@@ -16,10 +16,11 @@ fi
 target="$targetName-softmmu"
 
 # used to check if we have to configure QEMU first for the target
-target_conf="$iss_build_path/$target_name-softmmu-config-target.h"
+target_conf="$iss_build_path/$targetName-softmmu-config-target.h"
 
-# If file $ISS_DIR/build does not exist, we have to configure QEMU first
+# If target_conf file does not exist, we have to configure QEMU first
 if [ ! -f "$target_conf" ]; then
+    echo "(Re-)Configuring target $target..."
     mkdir -p $iss_build_path
     cd $iss_build_path
 

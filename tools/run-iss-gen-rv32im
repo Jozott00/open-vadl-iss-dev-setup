@@ -1,0 +1,3 @@
+#!/bin/bash
+
+run-iss-gen-sys risc-v/rv32im.vadl
