@@ -4,19 +4,8 @@
 set -e
 
 test_scripts_path="$OPEN_VADL_DIR/vadl/test/resources/scripts/iss_qemu"
-test_runner="$test_scripts_path/bare_metal_runner.py"
+test_runner="$test_scripts_path/main.py"
 
 cd "$TESTSUITE_DIR"
 
-# Use positional argument if provided
-targetName="$1"
-
-# abort if target name not set
-if [ -z "$targetName" ]; then
-    echo "No target name set."
-    exit 1
-fi
-
-targetExec="$ISS_DIR/build/qemu-system-${targetName}"
-
-python3 "$test_runner" "$targetExec"
+python3 "$test_runner" test-suite.yaml

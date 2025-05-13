@@ -2,8 +2,7 @@ FROM jozott/qemu:latest
 
 RUN apt update \
     && apt install -y \
-    openjdk-17-jdk \
-    openjdk-17-jre \
+    openjdk-21-jdk \
     language-pack-en-base \
     ccache
 
@@ -22,6 +21,6 @@ ENV TESTSUITE_DIR=/work/testsuite
 ENV GEN_DIR=/work
 
 # Add vadl executable to path
-ENV PATH="${OPEN_VADL_DIR}/vadl-cli/build/install/openvadl/bin:${PATH}"
+ENV PATH="${OPEN_VADL_DIR}/vadl-cli/build/install/openvadl/bin:${ISS_DIR}/build:${PATH}"
 
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
