@@ -1,4 +1,4 @@
-FROM jozott/qemu:latest
+FROM ghcr.io/openvadl/iss-test-base:latest
 
 RUN apt update \
     && apt install -y \

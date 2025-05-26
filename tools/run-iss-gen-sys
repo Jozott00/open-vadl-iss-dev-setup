@@ -9,6 +9,6 @@ spec_path="$OPEN_VADL_DIR/sys/$1"
 
 echo "Generating ISS from $spec_path specification..."
 
-time openvadl iss --dump -o /$GEN_DIR $spec_path ${@:2}
+time openvadl iss -o /$GEN_DIR $spec_path ${@:2}
 
 echo "Done."
