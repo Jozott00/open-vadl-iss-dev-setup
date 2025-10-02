@@ -4,7 +4,7 @@ cd "$(dirname "$0")"
 
 bash ./getting-started.sh
 
-pip install pandas
+pip install pandas pyyaml
 
 # install nushell
 curl -fsSL https://apt.fury.io/nushell/gpg.key | gpg --dearmor -o /etc/apt/trusted.gpg.d/fury-nushell.gpg

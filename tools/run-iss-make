@@ -27,9 +27,9 @@ if [ ! -f "$target_conf" ]; then
     # remove all old target conf files, to reset check
     rm -f *.h
 
-    ../configure --cc='ccache gcc' --target-list=$target,riscv64-softmmu,riscv32-softmmu,aarch64-softmmu
+    ../configure --cc='gcc' --target-list=$target,ppc64-softmmu,riscv64-softmmu,riscv32-softmmu,aarch64-softmmu
 fi
 
 cd $iss_build_path
 
-make -j$(nproc)
+make -j$(nproc) && ccache -s
