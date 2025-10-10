@@ -1,4 +1,4 @@
-FROM ghcr.io/openvadl/iss-test-base@sha256:c0963539e557db0024554abe4d391648e48b58f79b0a97e74357bc11af7ed0b8
+FROM ghcr.io/openvadl/iss-test-base@sha256:400e4be011ad1e9a5313e404bac0332a1d961e79eec380b859ee0647ca10a198
 
 RUN apt update \
     && apt install -y \
