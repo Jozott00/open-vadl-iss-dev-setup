@@ -2,7 +2,7 @@ FROM ghcr.io/openvadl/iss-test-base@sha256:400e4be011ad1e9a5313e404bac0332a1d961
 
 RUN apt update \
     && apt install -y \
-    openjdk-21-jdk \
+    openjdk-25-jdk \
     language-pack-en-base \
     ccache
 

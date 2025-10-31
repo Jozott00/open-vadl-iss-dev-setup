@@ -1,0 +1,4 @@
+#!/bin/bash
+# Executes the vadl binary to generate the ISS for the RV64I ISA.
+
+run-iss-gen-sys ../vadl/test/resources/testSource/sys/aarch64/virt.vadl
