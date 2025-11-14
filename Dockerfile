@@ -8,7 +8,7 @@ RUN apt update \
 
 RUN pip install pyyaml qemu.qmp
 
-ARG OPEN_VADL_GIT_REPO=git@ea.complang.tuwien.ac.at:vadl/open-vadl.git
+ARG OPEN_VADL_GIT_REPO=git@github.com:OpenVADL/openvadl.git
 ENV OPEN_VADL_GIT_REPO=${OPEN_VADL_GIT_REPO}
 
 # Add tools to path

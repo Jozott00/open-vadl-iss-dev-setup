@@ -4,7 +4,7 @@
     "dockerfile": "../Dockerfile",
     "context": "..",
     "args": {
-      "OPEN_VADL_GIT_REPO": "git@ea.complang.tuwien.ac.at:vadl/open-vadl.git"
+      "OPEN_VADL_GIT_REPO": "git@github.com:OpenVADL/openvadl.git"
     }
   },
   "workspaceFolder": "/work",
