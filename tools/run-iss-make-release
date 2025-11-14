@@ -26,7 +26,7 @@ cd $iss_build_path
 # remove all old target conf files, to reset check
 rm -f *.h
 
-../configure --cc='ccache gcc' --target-list=$target,riscv64-softmmu
+../configure --cc='ccache gcc' --target-list=$target,riscv64-softmmu,aarch64-softmmu
 
 
 cd $iss_build_path
