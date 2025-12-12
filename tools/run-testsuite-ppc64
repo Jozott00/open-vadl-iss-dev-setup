@@ -1,0 +1,11 @@
+#!/bin/bash
+# Run the ISS testsuite using the test-suite.yaml test specification.
+
+set -e
+
+test_scripts_path="$OPEN_VADL_DIR/vadl-test/resources/cosim_scripts/ppc64"
+test_runner="$test_scripts_path/main.py"
+
+cd "$TESTSUITE_DIR"
+
+python3 "$test_runner" test-suite-ppc64.yaml

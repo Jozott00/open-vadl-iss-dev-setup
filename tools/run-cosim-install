@@ -1,0 +1,9 @@
+#!/bin/env bash
+
+set -e
+
+cosim_path="$OPEN_VADL_DIR/vadl-cosim
+
+cd cosim_path
+
+cargo install --debug --path ./broker/
