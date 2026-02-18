@@ -5,11 +5,15 @@ It's essentially a devcontainer that mounts all relevant code and outputs to the
 can be opened by any IDE on the host system. However, building and running the ISS should be done within 
 the container, as it provides all relevant dependencies.
 
+Tip: On MacOS you may want to use the Orbstack docker engine instead of Docker Desktop, as it gives you
+a 3x speed-up when compiling QEMU.
+
 ## Directory Structure
 
 - `code` contains the `open-vadl` project
 - `iss` mounts the generated qemu iss (`/work/iss` within the container)
-- `testsuite` contains the `test-suite.yaml` file that specifies ISS tests (for manual debugging)
+- `templates/testsuite` contains tracked template test-suite YAML/TOML files
+- `testsuite` is the local working directory for copied test-suite files and results (ignored by git)
 - `dump` contains the VADL dump files during ISS generation
 - `tools` contains all helper scripts to execute different steps during development
 
@@ -21,20 +25,13 @@ the container, as it provides all relevant dependencies.
     This will build and start the devcontainer and reopens VSCode within it.
     The work direcotyr will be `/work`. If you want to work in some other directory, you can also open
     it within the container with `code /path/to/directory`.
-- The initially started container won't have the VADL repository and QEMU ISS set up. To do this run
-    ```bash
-    bash scripts/getting-started.sh
-    ```
-    This will download the correct QEMU version and clones the OpenVADL repository to `/code/open-vadl`. 
-    Note that your host must have access to the VADL repository via SSH (private key).
-
+- Upon restart, the `scripts/post-create.sh` script is executed.
+  This will download the correct QEMU version and clones the OpenVADL repository to `/code/open-vadl`. 
 - Now you can run 
     ```bash
-    run-vadl-build && run-iss-gen-rv64im && run-iss-make rv64im
+    run-vadl-build && run-iss-gen-sys risc-v/rv64im.vadl && run-iss-make rv64im
     ```
     which will build vadl, generates the RV64I ISS and builds the ISS.
-
-- Subsequents start of the devcontainer won't require running the `getting-started.sh`.
 
 
 ## Development
@@ -48,8 +45,15 @@ My basic workflow is
 
 ## Running tests on the generated ISS
 
-Currently the test framework does only work for rv64i. 
-In the `testsuite` directory create a file called `test-suite.yaml` with
+PPC64 tests use the CoSim flow via `run-cosim` (for example `run-cosim ppc64`).
+Other architectures use the ISS test runner via `run-testsuite` (for example `run-testsuite riscv`).
+
+Copy templates into `testsuite` first:
+```bash
+copy-testsuite-templates
+```
+
+Then edit the copied file in `testsuite` (for example `test-suite-riscv.yaml`):
 ```yaml
 tests:
 - id: MEMTEST
@@ -63,7 +67,15 @@ tests:
   reference_regs: [x28, x31]
   ```
 
-Then call `run-testsuite`. This will compile the assembly (with some wrapper) to an elf that is loaded
+Then call `run-testsuite <name>`, for example:
+```bash
+run-testsuite riscv
+run-testsuite aarch64
+```
+This resolves to `test-suite-riscv.yaml`, `test-suite-aarch64.yaml`, etc.
+You can also pass a full file name (for example `run-testsuite test-suite-riscv.yaml`).
+
+The test run will compile the assembly (with some wrapper) to an elf that is loaded
 to the `qemu-system-<arch>` iss and executes it. After execution is finished, the relevant register states are collected
 and the `qemu-system-riscv64` is executed as reference. At the end the results of both runs are compared to check
 if the generated VADL ISS functions correctly.

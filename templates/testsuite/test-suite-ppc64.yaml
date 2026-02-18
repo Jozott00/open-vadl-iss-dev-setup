@@ -1,0 +1,14 @@
+
+cosim_config: /work/testsuite/cosim-config/ppc64_config.toml
+
+result_dir: /work/testsuite/ppc64_results
+
+tests:
+- id: DIVW
+  debug: true
+  asm_core: |-
+    lis 16, -7255                            # X(16) := 0xFFFFFFFFE3A9C521 (-475413215)
+    ori 16, 16, 50465                        # ↑
+    lis 31, 0                                # X(31) := 0x0000000000000000 (0)
+    ori 31, 31, 0                            # ↑
+    divwe 29, 16, 31

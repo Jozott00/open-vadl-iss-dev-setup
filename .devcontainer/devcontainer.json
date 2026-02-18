@@ -12,7 +12,7 @@
     "source=${localWorkspaceFolder},target=/work,type=bind,consistency=cached",
     "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
   ],
-  "runArgs": ["--name=open-vadl-iss-dev"],
+  "runArgs": ["--name=open-vadl-iss-dev-2"],
   "customizations": {},
   "postCreateCommand": "bash scripts/post-create.sh"
 }

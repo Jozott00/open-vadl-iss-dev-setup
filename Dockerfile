@@ -1,4 +1,4 @@
-FROM ghcr.io/openvadl/iss-test-base@sha256:400e4be011ad1e9a5313e404bac0332a1d961e79eec380b859ee0647ca10a198
+FROM ghcr.io/openvadl/iss-test-base@sha256:e70f997ba639324b1e43ac08fee9460b10e321dfec3da1a6e710eae419acf2e1
 
 RUN apt update \
     && apt install -y \
@@ -22,9 +22,5 @@ ENV GEN_DIR=/work
 
 # Add vadl executable to path
 ENV PATH="${OPEN_VADL_DIR}/vadl-cli/build/install/openvadl/bin:${ISS_DIR}/build:${PATH}"
-
-# Install Rust toolchain
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-ENV PATH=/root/.cargo/bin:$PATH
 
 ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'

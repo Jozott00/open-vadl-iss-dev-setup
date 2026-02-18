@@ -24,3 +24,5 @@ echo "Cloning OpenVADL to $OPEN_VADL_DIR..."
 mkdir -p $OPEN_VADL_DIR
 cd $OPEN_VADL_DIR
 git clone $OPEN_VADL_GIT_REPO .
+
+run-cosim-install

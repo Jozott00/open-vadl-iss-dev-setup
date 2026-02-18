@@ -2,8 +2,8 @@
 
 set -e
 
-cosim_path="$OPEN_VADL_DIR/vadl-cosim
+cosim_path="$OPEN_VADL_DIR/vadl-cosim"
 
-cd cosim_path
+cd $cosim_path
 
 cargo install --debug --path ./broker/

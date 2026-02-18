@@ -1,9 +1,9 @@
 #!/bin/bash
-# Run the ISS testsuite using a test-suite*.yaml specification.
+# Run the CoSim testsuite using a test-suite*.yaml specification.
 
 set -euo pipefail
 
-test_scripts_path="$OPEN_VADL_DIR/vadl/test/resources/scripts/iss_qemu"
+test_scripts_path="$OPEN_VADL_DIR/vadl-test/resources/cosim_scripts/ppc64"
 test_runner="$test_scripts_path/main.py"
 
 if [[ ! -f "$test_runner" ]]; then
@@ -30,27 +30,14 @@ if [[ -n "$suite_name" ]]; then
     suite_file="test-suite-${suite_name}.yaml"
   fi
 else
-  if [[ -f "test-suite.yaml" ]]; then
-    suite_file="test-suite.yaml"
-  elif [[ -f "test-suite-riscv.yaml" ]]; then
-    suite_file="test-suite-riscv.yaml"
-  else
-    mapfile -t suites < <(compgen -G "test-suite*.yaml" || true)
-    if (( ${#suites[@]} == 1 )); then
-      suite_file="${suites[0]}"
-    else
-      echo "Error: no default suite found." >&2
-      echo "Usage: run-testsuite [suite-name|suite.yaml]" >&2
-      echo "Available suites: ${suites[*]:-(none)}" >&2
-      exit 1
-    fi
-  fi
+  suite_file="test-suite-ppc64.yaml"
 fi
 
 if [[ ! -f "$suite_file" ]]; then
   echo "Error: suite file not found: $suite_file" >&2
+  echo "Usage: run-cosim [suite-name|suite.yaml]" >&2
   exit 1
 fi
 
-echo "Running testsuite: $suite_file"
+echo "Running cosim testsuite: $suite_file"
 python3 "$test_runner" "$suite_file"

@@ -1,3 +1,0 @@
-#!/bin/bash
-
-run-iss-gen-sys risc-v/rv64i.vadl

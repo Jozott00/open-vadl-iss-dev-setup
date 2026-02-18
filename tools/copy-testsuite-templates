@@ -1,0 +1,30 @@
+#!/bin/bash
+# Copy tracked testsuite templates into TESTSUITE_DIR for local editing.
+# Usage: copy-testsuite-templates [--force]
+
+set -euo pipefail
+
+template_dir="/work/templates/testsuite"
+if [[ -z "${TESTSUITE_DIR:-}" ]]; then
+  echo "Error: TESTSUITE_DIR is not set" >&2
+  exit 1
+fi
+
+if [[ ! -d "$template_dir" ]]; then
+  echo "Error: template directory not found: $template_dir" >&2
+  exit 1
+fi
+
+mkdir -p "$TESTSUITE_DIR/cosim-config"
+
+if [[ "${1:-}" == "--force" ]]; then
+  cp -f "$template_dir/test-suite-riscv.yaml" "$TESTSUITE_DIR/test-suite-riscv.yaml"
+  cp -f "$template_dir/test-suite-ppc64.yaml" "$TESTSUITE_DIR/test-suite-ppc64.yaml"
+  cp -f "$template_dir/cosim-config/ppc64_config.toml" "$TESTSUITE_DIR/cosim-config/ppc64_config.toml"
+else
+  cp -n "$template_dir/test-suite-riscv.yaml" "$TESTSUITE_DIR/test-suite-riscv.yaml"
+  cp -n "$template_dir/test-suite-ppc64.yaml" "$TESTSUITE_DIR/test-suite-ppc64.yaml"
+  cp -n "$template_dir/cosim-config/ppc64_config.toml" "$TESTSUITE_DIR/cosim-config/ppc64_config.toml"
+fi
+
+echo "Copied testsuite templates to: $TESTSUITE_DIR"
